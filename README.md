@@ -42,3 +42,33 @@ Une fois cette commande exécutée, l'API effectuera les étapes suivantes :
     Affichage d'un message confirmant la mise à jour réussie.
 
 Maintenant, vous êtes prêt à profiter de la simplicité de notre API MinecraftJarUpdater pour garder votre projet Minecraft toujours à jour avec le dernier JAR disponible dans notre référentiel centralisé. Amusez-vous bien ! :video_game: :tada:
+
+# Maven
+```
+ <repositories>
+    <repository>
+        <id>Sandro642</id>
+        <url>https://sandro642.github.io/gradle</url>
+    </repository>
+</repositories>
+<dependencies>
+    <dependency>
+        <groupId>fr.Sandro642</groupId>
+        <artifactId>updaterapi</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
+```
+
+# Gradle
+```
+repositories {
+    maven {
+        url 'https://sandro642.github.io/gradle'
+    }
+}
+
+dependencies {
+    implementation 'fr.sandro642:updaterapi:1.0.0'
+}
+```
