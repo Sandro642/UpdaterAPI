@@ -1,6 +1,6 @@
-## :hammer_and_wrench: MinecraftJarUpdater API
+## :hammer_and_wrench: UpdaterAPI
 
-L'API :package: **MinecraftJarUpdater** :pick: a été conçue pour simplifier la mise à jour :arrows_counterclockwise: de votre projet Minecraft. Vous pouvez désormais mettre à jour facilement votre JAR Minecraft en utilisant une commande simple.
+L'API :package: **UpdaterAPI** :pick: a été conçue pour simplifier la mise à jour :arrows_counterclockwise: de votre projet Minecraft. Vous pouvez désormais mettre à jour facilement votre JAR Minecraft en utilisant une commande simple.
 
 ### :gear: Fonctionnalités principales
 
