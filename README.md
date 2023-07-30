@@ -42,3 +42,35 @@ Une fois cette commande exécutée, l'API effectuera les étapes suivantes :
     Affichage d'un message confirmant la mise à jour réussie.
 
 Maintenant, vous êtes prêt à profiter de la simplicité de notre API MinecraftJarUpdater pour garder votre projet Minecraft toujours à jour avec le dernier JAR disponible dans notre référentiel centralisé. Amusez-vous bien ! :video_game: :tada:
+
+# Maven
+```
+<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
+
+
+	<dependency>
+	    <groupId>com.github.Sandro642</groupId>
+	    <artifactId>UpdaterAPI</artifactId>
+	    <version>5df0c6f8</version>
+	</dependency>
+```
+
+# Gradle
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+dependencies {
+	        implementation 'com.github.Sandro642:UpdaterAPI:5df0c6f8'
+	}
+```
