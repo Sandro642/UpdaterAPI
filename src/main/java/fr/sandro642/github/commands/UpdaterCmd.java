@@ -15,12 +15,14 @@ import org.kohsuke.github.GitHub;
  * @Repository UpdaterApi
  * @CurrentVersion 1.0
  * @Description This class is used to update your application.
+ * @License MIT
  */
 
 public class UpdaterCmd implements CommandExecutor {
 
     /**
      * Ajout de l'instance plugin.
+     * @Description l'instance plugin est utilisé pour récupérer le dossier du plugin.
      */
 
     private Plugin plugin;
@@ -31,6 +33,7 @@ public class UpdaterCmd implements CommandExecutor {
 
     /**
      * Création de la commande native.
+     * @Description la commande va éxecuter une vérification à github avec le token de l'utilisateur pour récupérer la dernière version.
      */
 
     @Override

@@ -10,6 +10,7 @@ import org.bukkit.plugin.Plugin;
  * @Repository UpdaterApi
  * @CurrentVersion 1.0
  * @Description This class is used to update your application.
+ * @License MIT
  */
 
 public class Updater {
@@ -60,6 +61,12 @@ public class Updater {
         this.repository = repository;
         this.currentVersion = currentVersion;
         this.accessToken = accessToken;
+    }
+
+    public void initAccessApi(String owner, String repository, String currentVersion) {
+        this.owner = owner;
+        this.repository = repository;
+        this.currentVersion = currentVersion;
     }
 
     /**

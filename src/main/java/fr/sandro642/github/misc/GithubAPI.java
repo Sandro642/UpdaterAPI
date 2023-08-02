@@ -16,6 +16,7 @@ import java.net.URL;
  * @Repository UpdaterApi
  * @CurrentVersion 1.0
  * @Description This class is used to update your application.
+ * @License MIT
  */
 
 public class GithubAPI {
