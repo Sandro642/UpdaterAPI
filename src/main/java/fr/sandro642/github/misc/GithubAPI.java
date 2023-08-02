@@ -1,8 +1,7 @@
 package fr.sandro642.github.misc;
 
 
-import fr.sandro642.github.Updater.Updater;
-import fr.sandro642.github.commands.UpdaterCmd;
+import fr.sandro642.github.UpdaterAPI.UpdaterAPI;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
@@ -58,7 +57,7 @@ public class GithubAPI {
         // Récupérer le répertoire du plugin
         File pluginFile = plugin.getDataFolder().getParentFile();
         // Créer un nouveau fichier pour stocker la mise à jour
-        File updateFile = new File(pluginFile, Updater.getUpdater().repository + "-update.jar");
+        File updateFile = new File(pluginFile, UpdaterAPI.getUpdater().repository + "-update.jar");
 
         // Ouvrir une connexion pour télécharger le fichier à partir de l'URL
         try (InputStream in = new URL(downloadUrl).openStream();

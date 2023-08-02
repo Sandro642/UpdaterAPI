@@ -1,4 +1,4 @@
-package fr.sandro642.github.Updater;
+package fr.sandro642.github.UpdaterAPI;
 
 import fr.sandro642.github.commands.UpdaterCmd;
 import fr.sandro642.github.misc.GithubAPI;
@@ -13,7 +13,7 @@ import org.bukkit.plugin.Plugin;
  * @License MIT
  */
 
-public class Updater {
+public class UpdaterAPI {
 
     /**
      * Addition de Spigot Plugin
@@ -23,7 +23,7 @@ public class Updater {
 
     private Plugin plugin;
 
-    public Updater(Plugin plugin) {
+    public UpdaterAPI(Plugin plugin) {
         this.plugin = plugin;
         UpdaterCmd.setPlugin(plugin);
         GithubAPI.setPlugin(plugin);
@@ -33,7 +33,7 @@ public class Updater {
      * Création de l'instance de la classe Updater
      */
 
-    private static Updater updater;
+    private static UpdaterAPI updater;
 
 
     /**
@@ -88,7 +88,7 @@ public class Updater {
     /**
      * Création d'un getter pour la classe.
      */
-    public static Updater getUpdater() {
+    public static UpdaterAPI getUpdater() {
         return updater;
     }
 
