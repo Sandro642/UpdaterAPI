@@ -12,49 +12,71 @@ import org.kohsuke.github.GitHub;
 
 /**
  * @Owner Sandro642
- * @Repository UpdaterApi
- * @CurrentVersion 1.0
- * @Description This class is used to update your application.
- * @License MIT
+ * @Version 1.0
+ * @Description Updater Command
+ * @Date 19/02/2021
+ * @Name UpdaterCmd
+ * @Package fr.sandro642.github.commands
+ * @Class UpdaterCmd
+ * @Project UpdaterAPI
+ * @License MIT License
  */
 
 public class UpdaterCmd implements CommandExecutor {
 
+
     /**
-     * Ajout de l'instance plugin.
-     * @Description l'instance plugin est utilisé pour récupérer le dossier du plugin.
+     * @Plugin plugin
      */
 
     private Plugin plugin;
-    public static void setPlugin(Plugin plugin) {
-        UpdaterCmd.setPlugin(plugin);
+
+
+    /**
+     * Constructeur de la classe UpdaterCmd
+     * @param plugin
+     */
+
+    public UpdaterCmd(Plugin plugin) {
+        this.plugin = plugin;
     }
 
 
     /**
-     * Création de la commande native.
-     * @Description la commande va éxecuter une vérification à github avec le token de l'utilisateur pour récupérer la dernière version.
+     * @param plugin
+     */
+
+    public static void setPlugin(Plugin plugin) {
+        // Updated to set the plugin for the GithubAPI class
+        GithubAPI.setPlugin(plugin);
+    }
+
+
+    /**
+     * @param sender
+     * @param command
+     * @param label
+     * @param args
      */
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (label.equalsIgnoreCase(UpdaterAPI.getUpdater().nameCommand)) {
-            if (sender.hasPermission(UpdaterAPI.getUpdater().namePermission)) return true;
+        if (label.equalsIgnoreCase(UpdaterAPI.getUpdater().getNameCommand())) {
+            if (sender.hasPermission(UpdaterAPI.getUpdater().getNamePermission())) return true;
 
             sender.sendMessage("Vérification des mises à jour...");
 
             try {
-
                 // Connexion anonyme à l'API GitHub
-                GitHub github = GitHub.connect(UpdaterAPI.getUpdater().owner, UpdaterAPI.getUpdater().accessToken);
-                GHRelease latestRelease = github.getRepository(UpdaterAPI.getUpdater().owner + "/" + UpdaterAPI.getUpdater().repository).getLatestRelease();
+                GitHub github = GitHub.connect(UpdaterAPI.getUpdater().getOwner(), UpdaterAPI.getUpdater().getAccessToken());
+                GHRelease latestRelease = github.getRepository(UpdaterAPI.getUpdater().getOwner() + "/" + UpdaterAPI.getUpdater().getRepository()).getLatestRelease();
 
                 // Extraire le numéro de version sans le "v" du début
                 String latestVersion = latestRelease.getTagName().substring(1);
 
                 // Comparer les versions pour vérifier s'il y a une nouvelle version disponible
-                if (GithubAPI.getGithubAPI().isNewerVersion(latestVersion, UpdaterAPI.getUpdater().currentVersion)) {
+                if (GithubAPI.getGithubAPI().isNewerVersion(latestVersion, UpdaterAPI.getUpdater().getCurrentVersion())) {
                     sender.sendMessage("Nouvelle version trouvée : " + latestVersion);
                     // Télécharger la mise à jour
                     GithubAPI.getGithubAPI().downloadUpdate(latestRelease.getAssets().get(0).getBrowserDownloadUrl());
@@ -68,8 +90,6 @@ public class UpdaterCmd implements CommandExecutor {
             }
 
         }
-
-
 
         return false;
     }

@@ -1,70 +1,85 @@
 package fr.sandro642.github.misc;
 
-
 import fr.sandro642.github.UpdaterAPI.UpdaterAPI;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
+
 
 /**
  * @Owner Sandro642
- * @Repository UpdaterApi
- * @CurrentVersion 1.0
- * @Description This class is used to update your application.
- * @License MIT
+ * @Version 1.0
+ * @Description Github API
+ * @Date 19/02/2021
+ * @Name GithubAPI
+ * @Package fr.sandro642.github.misc
+ * @Class GithubAPI
+ * @Project UpdaterAPI
+ * @License MIT License
  */
 
 public class GithubAPI {
 
+
     /**
-     * Création de l'instance de la classe GithubAPI
+     * @GithubAPI githubAPI
+     * @Plugin plugin
      */
 
     private static GithubAPI githubAPI;
 
 
     /**
-     * Ajout de l'instance plugin.
+     * Constructeur de la classe GithubAPI
+     * @param plugin
      */
 
     private Plugin plugin;
-    public static void setPlugin(Plugin plugin) {
-        GithubAPI.setPlugin(plugin);
+
+
+    /**
+     * @param plugin
+     */
+
+    private GithubAPI(Plugin plugin) {
+        this.plugin = plugin;
     }
 
 
     /**
-     * Création d'une méthode booléen pour vérifier si la version est plus récente.
+     * @param plugin
+     */
+
+    public static void setPlugin(Plugin plugin) {
+        githubAPI = new GithubAPI(plugin);
+    }
+
+
+    /**
+     * @param newVersion
+     * @param currentVersion
+     * @return
      */
 
     public boolean isNewerVersion(String newVersion, String currentVersion) {
-        // Mettez en œuvre une logique pour comparer les versions ici
-        // Par exemple, vous pouvez séparer les numéros de version et les comparer individuellement.
-        // Pour cet exemple, nous allons simplement comparer les chaînes.
         return newVersion.compareTo(currentVersion) > 0;
     }
 
 
     /**
-     * Création d'une méthode pour télécharger la mise à jour.
+     * @param downloadUrl
+     * @throws IOException
      */
 
     public void downloadUpdate(String downloadUrl) throws IOException {
-        // Récupérer le répertoire du plugin
         File pluginFile = plugin.getDataFolder().getParentFile();
-        // Créer un nouveau fichier pour stocker la mise à jour
-        File updateFile = new File(pluginFile, UpdaterAPI.getUpdater().repository + "-update.jar");
+        File updateFile = new File(pluginFile, UpdaterAPI.getUpdater().getNamePlugin() + "-update.jar");
 
-        // Ouvrir une connexion pour télécharger le fichier à partir de l'URL
         try (InputStream in = new URL(downloadUrl).openStream();
              FileOutputStream out = new FileOutputStream(updateFile)) {
             byte[] buffer = new byte[1024];
             int bytesRead;
-            // Lire les données depuis l'URL et les écrire dans le fichier de mise à jour
             while ((bytesRead = in.read(buffer)) != -1) {
                 out.write(buffer, 0, bytesRead);
             }
@@ -73,7 +88,7 @@ public class GithubAPI {
 
 
     /**
-     * Création d'un getter pour la classe.
+     * @return
      */
 
     public static GithubAPI getGithubAPI() {

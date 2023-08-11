@@ -7,89 +7,189 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * @Owner Sandro642
- * @Repository UpdaterApi
- * @CurrentVersion 1.0
- * @Description This class is used to update your application.
- * @License MIT
+ * @Version 1.0
+ * @Description Api Main Class
+ * @Date 19/02/2021
+ * @Name UpdaterAPI
+ * @Package fr.sandro642.github.UpdaterAPI
+ * @Class SkymCoreAPI
+ * @Project UpdaterAPI
+ * @License MIT License
  */
 
 public class UpdaterAPI {
 
     /**
-     * Addition de Spigot Plugin
-     * Création de l'instance plugin
-     * Création du constructeur Updater pour l'instance plugin
+     * Différentes variables qui sont utiles ?
+     * @Plugin plugin
+     * @String owner
+     * @String repository
+     * @String currentVersion
+     * @String accessToken
+     * @String nameCommand
+     * @String namePermission
      */
 
     private Plugin plugin;
+    private String owner;
+    private String repository;
+    private String currentVersion;
+    private String accessToken;
+    private String nameCommand;
+    private String namePermission;
+    private String namePlugin;
+
+
+    /**
+     * Constructeur de la classe UpdaterAPI
+     * @param plugin
+     */
 
     public UpdaterAPI(Plugin plugin) {
         this.plugin = plugin;
+        this.owner = "";
+        this.repository = "";
+        this.currentVersion = "";
+        this.accessToken = "";
+        this.nameCommand = "";
+        this.namePermission = "";
+        this.namePlugin = "";
+
         UpdaterCmd.setPlugin(plugin);
         GithubAPI.setPlugin(plugin);
     }
 
+
     /**
-     * Création de l'instance de la classe Updater
+     * Initialisation de l'API
+     * @param owner
+     * @param repository
+     * @param currentVersion
+     * @param accessToken
      */
 
     private static UpdaterAPI updater;
 
 
     /**
-     * Création des variables de la classe.
+     * Initialisation de l'API
+     * @param owner
+     * @param repository
+     * @param currentVersion
+     * @param accessToken
      */
 
-    public String owner;
-    public String repository;
-    public String currentVersion;
-    public String accessToken;
-    public String nameCommand;
-    public String namePermission;
-
-
-    /**
-     * Création de la méthode pour initialiser les variables.
-     * @Owner owner, besoin du nom du créateur du repository.
-     * @Repo repository, besoin du nom du repository.
-     * @Version  currentVersion, besoin de la version actuelle de l'application.
-     * @Token accessToken, besoin du token d'accès à l'API Github.
-     */
-
-    public void initAccessApi(String owner, String repository, String currentVersion, String accessToken) {
+    public void initAccessApi(String owner, String repository, String currentVersion, String accessToken, String namePlugin) {
         this.owner = owner;
         this.repository = repository;
         this.currentVersion = currentVersion;
         this.accessToken = accessToken;
+        this.namePlugin = namePlugin;
     }
 
-    public void initAccessApi(String owner, String repository, String currentVersion) {
-        this.owner = owner;
-        this.repository = repository;
-        this.currentVersion = currentVersion;
-    }
 
     /**
-     * Création d'une méthode pour ajouter une commande native au jeu.
+     * Initialisation de l'API
+     * @param owner
+     * @param repository
+     * @param currentVersion
+     */
+
+    public void initAccessApi(String owner, String repository, String currentVersion, String namePlugin) {
+        initAccessApi(owner, repository, currentVersion, null, namePlugin);
+    }
+
+
+    /**
+     * Initialisation de l'API
+     * @param nameCommand
+     * @param namePermission
      */
 
     public void addCommand(String nameCommand, String namePermission) {
-        // TODO ajouter la commande native au jeu.
-
-        // Initialisation des variables.
         this.nameCommand = nameCommand;
         this.namePermission = namePermission;
 
-
-        plugin.getServer().getPluginCommand(nameCommand).setExecutor(new UpdaterCmd());
+        plugin.getServer().getPluginCommand(nameCommand).setExecutor(new UpdaterCmd(plugin));
     }
 
 
     /**
-     * Création d'un getter pour la classe.
+     * Initialisation de l'API
+     * @return updater
      */
+
     public static UpdaterAPI getUpdater() {
         return updater;
     }
 
+
+    /**
+     * Initialisation de l'API
+     * @return owner
+     */
+
+    public String getOwner() {
+        return owner;
+    }
+
+
+    /**
+     * Initialisation de l'API
+     * @return repository
+     */
+
+    public String getRepository() {
+        return repository;
+    }
+
+
+    /**
+     * Initialisation de l'API
+     * @return currentVersion
+     */
+
+    public String getCurrentVersion() {
+        return currentVersion;
+    }
+
+
+    /**
+     * Initialisation de l'API
+     * @return accessToken
+     */
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+
+    /**
+     * Initialisation de l'API
+     * @return nameCommand
+     */
+
+    public String getNameCommand() {
+        return nameCommand;
+    }
+
+
+    /**
+     * Initialisation de l'API
+     * @return namePermission
+     */
+
+    public String getNamePermission() {
+        return namePermission;
+    }
+
+
+    /**
+     * Initialisation de l'API
+     * @return namePlugin
+     */
+
+    public String getNamePlugin() {
+        return namePlugin;
+    }
 }
